@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import propTypes from "prop-types";
-import { link } from "fs";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
-import { spawn } from "child_process";
 
 export default function Button(props) {
   const className = [props.className];
@@ -56,7 +53,7 @@ export default function Button(props) {
   );
 }
 
-Button.protTypes = {
+Button.propTypes = {
   type: propTypes.oneOf(["button", "link"]),
   onclick: propTypes.func,
   target: propTypes.string,
