@@ -1,43 +1,59 @@
 import React from "react";
+
 import Button from "elements/Buttons";
 import BrandIcon from "parts/IconText";
+import { useLocation } from 'react-router-dom'
 
-export default function Header(props) {
+export default function Header({isCentered}) {
+  const location = useLocation()
   const getNavLinkClass = (path) => {
-    return props.location.pathname === path ? "active" : "";
+    return location.pathname === path ? " active" : "";
   };
 
-  return (
-    <header className="spacing-sm">
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light">
-          <BrandIcon />
-          <div className="collapse navbar-collapse">
-            <ul className="navbar-nav ml-auto">
-              <li className={`nav-item ${getNavLinkClass("/Beranda")}`}>
-                <Button className="nav-link" type="link" href="/Beranda">
-                  Beranda
-                </Button>
-              </li>
-              <li className={`nav-item ${getNavLinkClass("/Fasilitas")}`}>
-                <Button className="nav-link" type="link" href="/Fasilitas">
-                  Fasilitas
-                </Button>
-              </li>
-              <li className={`nav-item ${getNavLinkClass("/Paket")}`}>
-                <Button className="nav-link" type="link" href="/Paket">
-                  Paket
-                </Button>
-              </li>
-              <li className={`nav-item ${getNavLinkClass("/Testimoni")}`}>
-                <Button className="nav-link" type="link" href="/Testimoni">
-                  Testimoni
-                </Button>
-              </li>
-            </ul>
+  if (isCentered)
+    return (
+        <header className="spacing-sm">
+          <div className="container">
+            <nav className="navbar navbar-expand-lg navbar-light">
+              <Button className="brand-text-icon mx-auto" href="" type="link">
+                Stay<span className="text-gray-900">cation.</span>
+              </Button>
+            </nav>
           </div>
-        </nav>
-      </div>
-    </header>
+        </header>
+    );
+
+  return (
+      <header className="spacing-sm">
+        <div className="container">
+          <nav className="navbar navbar-expand-lg navbar-light">
+            <BrandIcon />
+            <div className="collapse navbar-collapse">
+              <ul className="navbar-nav ms-auto">
+                <li className={`nav-item${getNavLinkClass("/")}`}>
+                  <Button className="nav-link" type="link" href="/">
+                    Home
+                  </Button>
+                </li>
+                <li className={`nav-item${getNavLinkClass("/browse-by")}`}>
+                  <Button className="nav-link" type="link" href="/browse-by">
+                    Browse By
+                  </Button>
+                </li>
+                <li className={`nav-item${getNavLinkClass("/stories")}`}>
+                  <Button className="nav-link" type="link" href="/stories">
+                    Stories
+                  </Button>
+                </li>
+                <li className={`nav-item${getNavLinkClass("/agents")}`}>
+                  <Button className="nav-link" type="link" href="/agents">
+                    Agents
+                  </Button>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
   );
 }
